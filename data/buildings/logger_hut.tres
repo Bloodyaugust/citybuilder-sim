@@ -10,3 +10,5 @@ collision_mask = Array[Vector2]([Vector2(0, 0), Vector2(1, 2.08165e-12)])
 effect_mask = Array[Vector2]([Vector2(2, 2.08165e-12), Vector2(0.5, 1), Vector2(-0.5, 1), Vector2(-1, 2.08165e-12), Vector2(-0.5, -1), Vector2(0.5, -1), Vector2(1.5, -1), Vector2(1.5, 1)])
 name = "Logger Hut"
 description = "Chops down nearby trees for lumber"
+resources_collected = Array[String](["wood"])
+resource_collection_rate_per_tile = 0.15

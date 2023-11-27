@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bfjaqu2i4i63i"]
+[gd_scene load_steps=18 format=3 uid="uid://bfjaqu2i4i63i"]
 
 [ext_resource type="Script" path="res://views/FPS.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://4typrc2p2rra" path="res://icon.png" id="2"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bquw3hjgjei57" path="res://actors/Building.tscn" id="11_g1ajc"]
 [ext_resource type="Resource" uid="uid://xh1lu2y0utpl" path="res://data/buildings/logger_hut.tres" id="12_a4fw6"]
 [ext_resource type="PackedScene" uid="uid://c7pqm8xy2novr" path="res://actors/Resource.tscn" id="14_huttj"]
+[ext_resource type="Resource" uid="uid://bx0wfu1su5a3j" path="res://data/resources/wood.tres" id="15_5wglv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a7s8r"]
 texture = ExtResource("9_mwvq6")
@@ -323,3 +324,8 @@ data = ExtResource("12_a4fw6")
 
 [node name="Resource" parent="." instance=ExtResource("14_huttj")]
 position = Vector2(59, -132)
+data = ExtResource("15_5wglv")
+
+[node name="Resource2" parent="." instance=ExtResource("14_huttj")]
+position = Vector2(-58, -138)
+data = ExtResource("15_5wglv")

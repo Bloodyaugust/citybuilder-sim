@@ -8,6 +8,7 @@ var actor_dict: Dictionary = {}
 
 func add_actor_to_tile(tile: Vector2i, actor: Variant) -> void:
   actor_dict[tile] = actor
+  tile_actor_changed.emit(tile)
 
 func get_tile_actor(tile: Vector2i) -> Variant:
   if actor_dict.has(tile):
@@ -15,8 +16,12 @@ func get_tile_actor(tile: Vector2i) -> Variant:
 
   return false
 
+func get_tilemap() -> TileMap:
+  return _tilemap
+
 func remove_actor_from_tile(tile: Vector2i) -> void:
   actor_dict.erase(tile)
+  tile_actor_changed.emit(tile)
 
 func _unhandled_input(event: InputEvent) -> void:
   if event.is_action_released("select_actor") && !Store.state.selected_build_option:
