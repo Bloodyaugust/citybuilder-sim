@@ -9,6 +9,13 @@ var _collision_tiles: Array[Vector2i]
 var _effect_tiles: Array[Vector2i]
 var _origin_tile: Vector2i
 
+func is_buildable() -> bool:
+  for _collision_tile in _collision_tiles:
+    if BuildingController.building_dict.has(_collision_tile):
+      return false
+
+  return true
+
 func _draw():
   for _collision_tile in _collision_tiles:
     draw_circle(to_local(GDUtil.get_global_position_from_tile(_collision_tile, _tilemap)), 35.0, Color.ORANGE_RED)

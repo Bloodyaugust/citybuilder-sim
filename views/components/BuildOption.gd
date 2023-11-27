@@ -9,6 +9,7 @@ var data: BuildingData
 func _on_clicked(event: InputEvent) -> void:
   if event is InputEventMouseButton and event.is_released():
     Store.set_state("selected_build_option", data)
+    Store.set_state("selected_actor", null)
 
 func _ready():
   gui_input.connect(_on_clicked)

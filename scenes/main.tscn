@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfjaqu2i4i63i"]
+[gd_scene load_steps=17 format=3 uid="uid://bfjaqu2i4i63i"]
 
 [ext_resource type="Script" path="res://views/FPS.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://dngu6lih2xxlo" path="res://actors/Player.tscn" id="1_4pt6e"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://lib/BetterCam.tscn" id="5"]
 [ext_resource type="Script" path="res://views/Splash.gd" id="6"]
 [ext_resource type="Script" path="res://views/About.gd" id="7_xk6j8"]
+[ext_resource type="Script" path="res://views/SelectionDetail.gd" id="8_4qo2d"]
 [ext_resource type="Script" path="res://views/BuildOptions.gd" id="8_r2c2g"]
 [ext_resource type="Texture2D" uid="uid://cfgv72pg2yyad" path="res://sprites/hexagonTerrain_sheet.png" id="9_mwvq6"]
 [ext_resource type="Script" path="res://scripts/controllers/PlayerController.gd" id="10_qhhod"]
@@ -260,6 +261,36 @@ layout_mode = 2
 [node name="SelectionDetail" type="PanelContainer" parent="UIRoot/GameBar/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("8_4qo2d")
+
+[node name="MarginContainer" type="MarginContainer" parent="UIRoot/GameBar/HBoxContainer/SelectionDetail"]
+layout_mode = 2
+
+[node name="SelectionDetailInner" type="VBoxContainer" parent="UIRoot/GameBar/HBoxContainer/SelectionDetail/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIRoot/GameBar/HBoxContainer/SelectionDetail/MarginContainer/SelectionDetailInner"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="SelectionDetailTexture" type="TextureRect" parent="UIRoot/GameBar/HBoxContainer/SelectionDetail/MarginContainer/SelectionDetailInner/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 2.08165e-12)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SelectionDetailName" type="Label" parent="UIRoot/GameBar/HBoxContainer/SelectionDetail/MarginContainer/SelectionDetailInner/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SelectionDetailDescription" type="Label" parent="UIRoot/GameBar/HBoxContainer/SelectionDetail/MarginContainer/SelectionDetailInner"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 
 [node name="BuildOptions" type="PanelContainer" parent="UIRoot/GameBar/HBoxContainer"]
 layout_mode = 2
@@ -280,6 +311,7 @@ zoom_max = 5.0
 
 [node name="TileMap" type="TileMap" parent="." groups=["TileMap"]]
 unique_name_in_owner = true
+z_index = -1
 tile_set = SubResource("TileSet_25pv1")
 format = 2
 layer_0/tile_data = PackedInt32Array(-1, 327682, 1, 0, 327682, 1, 65535, 327682, 1, -65536, 327682, 1, -131072, 327682, 1, -65537, 327682, 1, -2, 327682, 1)

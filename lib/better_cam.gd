@@ -80,7 +80,6 @@ func _ready():
 func _unhandled_input(event):
   if event is InputEventPanGesture:
     _target_zoom = _target_zoom + Vector2(event.delta.y * camera_zoom_speed, event.delta.y * camera_zoom_speed)
-    print("mouse thing: ", event.delta)
   
   if event is InputEventMouseButton:
     if event.button_index == MOUSE_BUTTON_WHEEL_UP:
