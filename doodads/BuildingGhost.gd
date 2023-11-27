@@ -11,7 +11,7 @@ var _origin_tile: Vector2i
 
 func is_buildable() -> bool:
   for _collision_tile in _collision_tiles:
-    if BuildingController.building_dict.has(_collision_tile):
+    if TilemapActorController.get_tile_actor(_collision_tile):
       return false
 
   return true

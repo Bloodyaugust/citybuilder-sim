@@ -1,7 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://bfjaqu2i4i63i"]
 
 [ext_resource type="Script" path="res://views/FPS.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://dngu6lih2xxlo" path="res://actors/Player.tscn" id="1_4pt6e"]
 [ext_resource type="Texture2D" uid="uid://4typrc2p2rra" path="res://icon.png" id="2"]
 [ext_resource type="Theme" uid="uid://co811ue55i33m" path="res://resources/base_theme.tres" id="2_1ffbx"]
 [ext_resource type="Script" path="res://views/MainMenu.gd" id="4"]
@@ -14,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/controllers/PlayerController.gd" id="10_qhhod"]
 [ext_resource type="PackedScene" uid="uid://bquw3hjgjei57" path="res://actors/Building.tscn" id="11_g1ajc"]
 [ext_resource type="Resource" uid="uid://xh1lu2y0utpl" path="res://data/buildings/logger_hut.tres" id="12_a4fw6"]
+[ext_resource type="PackedScene" uid="uid://c7pqm8xy2novr" path="res://actors/Resource.tscn" id="14_huttj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a7s8r"]
 texture = ExtResource("9_mwvq6")
@@ -130,8 +130,6 @@ tile_size = Vector2i(120, 140)
 sources/2 = SubResource("TileSetAtlasSource_a7s8r")
 
 [node name="Node2D" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource("1_4pt6e")]
 
 [node name="UIRoot" type="CanvasLayer" parent="."]
 
@@ -322,3 +320,6 @@ script = ExtResource("10_qhhod")
 [node name="Building" parent="." instance=ExtResource("11_g1ajc")]
 position = Vector2(-3, -29)
 data = ExtResource("12_a4fw6")
+
+[node name="Resource" parent="." instance=ExtResource("14_huttj")]
+position = Vector2(59, -132)

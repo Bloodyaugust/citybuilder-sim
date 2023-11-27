@@ -6,3 +6,5 @@ class_name BuildingData
 @export var effect_mask: Array[Vector2]
 @export var name: String
 @export var description: String
+@export var resources_collected: Array[String]
+@export var resource_collection_rate_per_tile: float
