@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bfjaqu2i4i63i"]
+[gd_scene load_steps=16 format=3 uid="uid://bfjaqu2i4i63i"]
 
 [ext_resource type="Script" path="res://views/FPS.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://dngu6lih2xxlo" path="res://actors/Player.tscn" id="1_4pt6e"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://lib/BetterCam.tscn" id="5"]
 [ext_resource type="Script" path="res://views/Splash.gd" id="6"]
 [ext_resource type="Script" path="res://views/About.gd" id="7_xk6j8"]
+[ext_resource type="Script" path="res://views/BuildOptions.gd" id="8_r2c2g"]
 [ext_resource type="Texture2D" uid="uid://cfgv72pg2yyad" path="res://sprites/hexagonTerrain_sheet.png" id="9_mwvq6"]
 [ext_resource type="Script" path="res://scripts/controllers/PlayerController.gd" id="10_qhhod"]
 [ext_resource type="PackedScene" uid="uid://bquw3hjgjei57" path="res://actors/Building.tscn" id="11_g1ajc"]
@@ -241,6 +242,38 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Main Menu"
 
+[node name="GameBar" type="PanelContainer" parent="UIRoot"]
+clip_contents = true
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 0
+theme = ExtResource("2_1ffbx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIRoot/GameBar"]
+layout_mode = 2
+
+[node name="SelectionDetail" type="PanelContainer" parent="UIRoot/GameBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BuildOptions" type="PanelContainer" parent="UIRoot/GameBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+script = ExtResource("8_r2c2g")
+
+[node name="MarginContainer" type="MarginContainer" parent="UIRoot/GameBar/HBoxContainer/BuildOptions"]
+layout_mode = 2
+
+[node name="BuildOptionsHBox" type="HBoxContainer" parent="UIRoot/GameBar/HBoxContainer/BuildOptions/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="BetterCam" parent="." instance=ExtResource("5")]
 mouse_drag = false
 zoom_max = 5.0
@@ -255,5 +288,5 @@ layer_0/tile_data = PackedInt32Array(-1, 327682, 1, 0, 327682, 1, 65535, 327682,
 script = ExtResource("10_qhhod")
 
 [node name="Building" parent="." instance=ExtResource("11_g1ajc")]
-position = Vector2(0, -37)
+position = Vector2(-3, -29)
 data = ExtResource("12_a4fw6")

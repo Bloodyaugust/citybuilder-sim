@@ -10,7 +10,7 @@ func _draw():
 func _process(delta):
   var _mouse_position: Vector2 = get_global_mouse_position()
   
-  var _hovered_tile_location := _tilemap.local_to_map(_tilemap.to_local(_mouse_position))
-  _hovered_tile_position = _tilemap.to_global(_tilemap.map_to_local(_hovered_tile_location))
+  var _hovered_tile := GDUtil.get_tile_from_global_position(_mouse_position, _tilemap)
+  _hovered_tile_position = GDUtil.get_global_position_from_tile(_hovered_tile, _tilemap)
 
   queue_redraw()

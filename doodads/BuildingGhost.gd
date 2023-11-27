@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var data: BuildingData
+var data: BuildingData
 
 @onready var _sprite: Sprite2D = %Sprite2D
 @onready var _tilemap: TileMap = get_tree().get_first_node_in_group("TileMap")
@@ -16,8 +16,13 @@ func _draw():
   for _effect_tile in _effect_tiles:
     draw_circle(to_local(GDUtil.get_global_position_from_tile(_effect_tile, _tilemap)), 5.0, Color.YELLOW_GREEN)
 
-func _ready():
-  _origin_tile = GDUtil.get_tile_from_global_position(global_position, _tilemap)
+func _process(delta):
+  var _mouse_position: Vector2 = get_global_mouse_position()
+  
+  _effect_tiles = []
+  _collision_tiles = []
+
+  _origin_tile = GDUtil.get_tile_from_global_position(_mouse_position, _tilemap)
   global_position = GDUtil.get_global_position_from_tile(_origin_tile, _tilemap)
 
   for _collision_tile_offset in data.collision_mask:
@@ -26,6 +31,7 @@ func _ready():
   for _effect_tile_offset in data.effect_mask:
     _effect_tiles.append(GDUtil.get_tile_from_offset_global(global_position, _effect_tile_offset, _tilemap))
 
-  _sprite.texture = data.sprite
-
   queue_redraw()
+
+func _ready():
+  _sprite.texture = data.sprite

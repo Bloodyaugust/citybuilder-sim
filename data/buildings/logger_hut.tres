@@ -6,5 +6,7 @@
 [resource]
 script = ExtResource("1_lhkxd")
 sprite = ExtResource("2_8yvoj")
-collision_mask = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
-effect_mask = Array[Vector2i]([Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, -1), Vector2i(0, 1), Vector2i(1, 1), Vector2i(1, -1)])
+collision_mask = Array[Vector2]([Vector2(0, 0), Vector2(1, 2.08165e-12)])
+effect_mask = Array[Vector2]([Vector2(2, 2.08165e-12), Vector2(0.5, 1), Vector2(-0.5, 1), Vector2(-1, 2.08165e-12), Vector2(-0.5, -1), Vector2(0.5, -1), Vector2(1.5, -1), Vector2(1.5, 1)])
+name = "Logger Hut"
+description = "Chops down nearby trees for lumber"

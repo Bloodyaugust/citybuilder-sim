@@ -18,10 +18,10 @@ config/icon="res://icon.png"
 [autoload]
 
 Store="*res://autoloads/Store.gd"
-GDUtil="*res://lib/util/GDUtil.gd"
 ClientConstants="*res://constants/ClientConstants.gd"
 GameConstants="*res://constants/GameConstants.gd"
 ViewController="*res://autoloads/ViewController.gd"
+BuildingController="*res://scripts/controllers/BuildingController.gd"
 
 [display]
 
