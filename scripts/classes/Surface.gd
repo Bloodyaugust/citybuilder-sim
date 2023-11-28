@@ -7,6 +7,10 @@ var _used_cells: Array[Vector2i] = get_used_cells(0)
 var _path_cache: Dictionary = {}
 
 
+func get_tile_is_used(tile: Vector2i) -> bool:
+	return tile in _used_cells
+
+
 func get_nav_path(from_tile: Vector2i, to_tile: Vector2i) -> Array[Vector2]:
 	var _returned_path: Array[Vector2]
 
@@ -50,5 +54,3 @@ func _init():
 
 			if _tile_nav_point_index != -1:
 				navigation.connect_points(_tile_index, _tile_nav_point_index)
-
-	print(navigation.are_points_connected(0, 2))
