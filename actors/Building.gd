@@ -5,7 +5,7 @@ signal request_logistics_pickup(building: Node2D)
 @export var data: BuildingData
 
 @onready var _sprite: Sprite2D = %Sprite2D
-@onready var _tilemap: TileMap = get_tree().get_first_node_in_group("TileMap")
+@onready var _tilemap: Surface = get_tree().get_first_node_in_group("TileMap")
 
 var _collision_tiles: Array[Vector2i]
 var _draw_details: bool = false
@@ -23,6 +23,10 @@ func get_collision_tiles() -> Array[Vector2i]:
 
 func get_effect_tiles() -> Array[Vector2i]:
 	return _effect_tiles
+
+
+func get_origin_tile() -> Vector2i:
+	return _origin_tile
 
 
 func get_selection_details() -> Dictionary:
@@ -105,6 +109,8 @@ func _exit_tree() -> void:
 
 func _on_request_logistics_pickup(building: Node2D) -> void:
 	var _requesting_building_stored_resources: Dictionary = building.pickup_stored_resources()
+
+	print(_tilemap.get_nav_path(_origin_tile, building.get_origin_tile()))
 
 	LogisticsController.add_resources_to_logistic_network_by_id(
 		LogisticsController.get_building_logistic_network_id(self),
