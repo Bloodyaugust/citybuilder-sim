@@ -16,6 +16,7 @@ enum BUILDING_TILE_TYPES {
 @onready var _file_name_edit: LineEdit = %FileNameEdit
 @onready var _building_name_edit: LineEdit = %BuildingNameEdit
 @onready var _building_description_edit: TextEdit = %BuildingDescriptionEdit
+@onready var _building_logistics_checkbox: CheckBox = %BuildingLogisticsCheckbox
 
 var _collision_tiles: Array[Vector2i] = [Vector2i(0, 0)]
 var _current_tile_type: BUILDING_TILE_TYPES = BUILDING_TILE_TYPES.COLLISION
@@ -46,11 +47,23 @@ func _on_save_button_pressed() -> void:
 	var _new_building: BuildingData = BuildingData.new()
 	var _collision_mask: Array[Vector2] = []
 	var _effect_mask: Array[Vector2] = []
+	var _building_flags: Array[GameConstants.BUILDING_FLAGS] = []
+
+	_building_flags.assign(
+		(
+			[GameConstants.BUILDING_FLAGS.LOGISTICS]
+			if _building_logistics_checkbox.button_pressed
+			else []
+		)
+	)
 
 	_collision_mask.assign(
 		_collision_tiles.map(
 			func(_tile: Vector2i): return (
-				GDUtil.get_global_position_from_tile(_tile, _tilemap)
+				(
+					GDUtil.get_global_position_from_tile(_tile, _tilemap)
+					- GDUtil.get_global_position_from_tile(Vector2i(0, 0), _tilemap)
+				)
 				/ Vector2(_tilemap.tile_set.tile_size)
 			)
 		)
@@ -58,7 +71,10 @@ func _on_save_button_pressed() -> void:
 	_effect_mask.assign(
 		_effect_tiles.map(
 			func(_tile: Vector2i): return (
-				GDUtil.get_global_position_from_tile(_tile, _tilemap)
+				(
+					GDUtil.get_global_position_from_tile(_tile, _tilemap)
+					- GDUtil.get_global_position_from_tile(Vector2i(0, 0), _tilemap)
+				)
 				/ Vector2(_tilemap.tile_set.tile_size)
 			)
 		)
@@ -68,6 +84,7 @@ func _on_save_button_pressed() -> void:
 	_new_building.description = _building_description_edit.text
 	_new_building.collision_mask = _collision_mask
 	_new_building.effect_mask = _effect_mask
+	_new_building.building_flags = _building_flags
 
 	ResourceSaver.save(_new_building, "res://data/buildings/" + _file_name_edit.text + ".tres")
 
@@ -78,6 +95,7 @@ func _on_clear_button_pressed() -> void:
 	_file_name_edit.text = ""
 	_building_name_edit.text = ""
 	_building_description_edit.text = ""
+	_building_logistics_checkbox.button_pressed = false
 
 
 func _on_exit_button_pressed() -> void:

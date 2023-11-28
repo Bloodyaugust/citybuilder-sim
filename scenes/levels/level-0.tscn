@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/classes/Surface.gd" id="2_bsr08"]
 [ext_resource type="PackedScene" uid="uid://bsgv5nv5djali" path="res://doodads/StartingBuilding.tscn" id="3_qxf0i"]
 [ext_resource type="Resource" uid="uid://xh1lu2y0utpl" path="res://data/buildings/logger_hut.tres" id="4_acv8b"]
-[ext_resource type="Resource" uid="uid://11kok2lcvjsg" path="res://data/buildings/storage-yard.tres" id="5_hyus8"]
+[ext_resource type="Resource" uid="uid://dn8w0k7jey80i" path="res://data/buildings/storage_yard.tres" id="5_d6b3e"]
 [ext_resource type="PackedScene" uid="uid://dw43ufugcnnqe" path="res://doodads/StartingResource.tscn" id="6_3q5cc"]
 [ext_resource type="Resource" uid="uid://bx0wfu1su5a3j" path="res://data/resources/wood.tres" id="7_xf4el"]
 
@@ -137,8 +137,8 @@ position = Vector2(-2, -20)
 data = ExtResource("4_acv8b")
 
 [node name="StartingBuilding2" parent="StartingBuildings" instance=ExtResource("3_qxf0i")]
-position = Vector2(-179, 75)
-data = ExtResource("5_hyus8")
+position = Vector2(-121, -28)
+data = ExtResource("5_d6b3e")
 
 [node name="StartingResources" type="Node2D" parent="."]
 unique_name_in_owner = true
