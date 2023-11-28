@@ -25,7 +25,7 @@ func register_view(view: CLIENT_VIEWS, instance: Control) -> void:
 
 
 func set_client_view(
-	view: CLIENT_VIEWS, transition: TRANSITION_TYPES = TRANSITION_TYPES.SLIDE
+	view: CLIENT_VIEWS, transition: TRANSITION_TYPES = TRANSITION_TYPES.FADE
 ) -> void:
 	var _old_instance: CLIENT_VIEWS = Store.state.client_view
 	var _view_tween: Tween = get_tree().create_tween().set_trans(Tween.TRANS_QUAD)

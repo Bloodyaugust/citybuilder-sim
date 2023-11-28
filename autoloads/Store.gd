@@ -1,6 +1,7 @@
 extends Node
 
 const CONTROLLER_CONTAINER_SCENE: PackedScene = preload("res://doodads/ControllerContainer.tscn")
+const EDITOR_SCENE: PackedScene = preload("res://scenes/Editor.tscn")
 const LEVEL_0_SCENE: PackedScene = preload("res://scenes/levels/level-0.tscn")
 const PersistentStore := preload("res://scripts/classes/PersistentStore.gd")
 
@@ -16,6 +17,15 @@ var state: Dictionary = {
 }
 
 @onready var _level_container: Node2D = get_tree().get_first_node_in_group("LevelContainer")
+
+
+func start_editor() -> void:
+	ViewController.set_client_view(ViewController.CLIENT_VIEWS.NONE)
+	set_state("game", GameConstants.GAME_EDITOR)
+
+	var _new_editor = EDITOR_SCENE.instantiate()
+
+	_level_container.add_child(_new_editor)
 
 
 func start_game() -> void:

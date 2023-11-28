@@ -3,6 +3,10 @@
 [ext_resource type="FontFile" uid="uid://dcbmtfb4yroq0" path="res://resources/fonts/Roboto-Regular.ttf" id="1_8gnum"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8s2yx"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
 bg_color = Color(0.14902, 0.168627, 0.266667, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
@@ -10,6 +14,10 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdxwa"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
 bg_color = Color(0.352941, 0.411765, 0.533333, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
@@ -17,6 +25,10 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xa4c"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
 bg_color = Color(0.352941, 0.411765, 0.533333, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
@@ -24,6 +36,10 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vsd83"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
 bg_color = Color(0.227451, 0.266667, 0.4, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
