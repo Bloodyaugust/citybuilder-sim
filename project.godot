@@ -23,6 +23,7 @@ GameConstants="*res://constants/GameConstants.gd"
 ViewController="*res://autoloads/ViewController.gd"
 TilemapActorController="*res://scripts/controllers/TilemapActorController.gd"
 BuildingController="*res://scripts/controllers/BuildingController.gd"
+LogisticsController="*res://scripts/controllers/LogisticsController.gd"
 
 [display]
 

@@ -14,6 +14,20 @@ func is_buildable() -> bool:
     if TilemapActorController.get_tile_actor(_collision_tile):
       return false
 
+  var _tile_network: Variant = LogisticsController.get_tile_logistic_network(_origin_tile)
+
+  if !_tile_network:
+    return false
+
+  var _network_resources: Dictionary = LogisticsController.get_logistic_network_resources(_tile_network)
+
+  for _resource_id in data.building_cost.keys():
+    if !_network_resources.has(_resource_id):
+      return false
+
+    if data.building_cost[_resource_id] > _network_resources[_resource_id]:
+      return false
+
   return true
 
 func _draw():

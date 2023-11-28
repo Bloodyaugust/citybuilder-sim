@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bfjaqu2i4i63i"]
+[gd_scene load_steps=19 format=3 uid="uid://bfjaqu2i4i63i"]
 
 [ext_resource type="Script" path="res://views/FPS.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://4typrc2p2rra" path="res://icon.png" id="2"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/controllers/PlayerController.gd" id="10_qhhod"]
 [ext_resource type="PackedScene" uid="uid://bquw3hjgjei57" path="res://actors/Building.tscn" id="11_g1ajc"]
 [ext_resource type="Resource" uid="uid://xh1lu2y0utpl" path="res://data/buildings/logger_hut.tres" id="12_a4fw6"]
+[ext_resource type="Resource" uid="uid://cwnbkkgjapskl" path="res://data/buildings/storage_yard.tres" id="14_1p1qf"]
 [ext_resource type="PackedScene" uid="uid://c7pqm8xy2novr" path="res://actors/Resource.tscn" id="14_huttj"]
 [ext_resource type="Resource" uid="uid://bx0wfu1su5a3j" path="res://data/resources/wood.tres" id="15_5wglv"]
 
@@ -321,6 +322,10 @@ script = ExtResource("10_qhhod")
 [node name="Building" parent="." instance=ExtResource("11_g1ajc")]
 position = Vector2(-3, -29)
 data = ExtResource("12_a4fw6")
+
+[node name="Building2" parent="." instance=ExtResource("11_g1ajc")]
+position = Vector2(-238, -36)
+data = ExtResource("14_1p1qf")
 
 [node name="Resource" parent="." instance=ExtResource("14_huttj")]
 position = Vector2(59, -132)

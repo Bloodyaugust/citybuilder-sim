@@ -1,5 +1,7 @@
 extends Node2D
 
+signal building_added(building: Node2D)
+
 var BUILDING_DATA: Array[BuildingData]
 var BUILDING_ACTOR: PackedScene = preload("res://actors/Building.tscn")
 var BUILDING_GHOST: PackedScene = preload("res://doodads/BuildingGhost.tscn")
@@ -11,6 +13,8 @@ var _current_ghost = null
 func add_building(building: Node2D) -> void:
   for _collision_tile in building.get_collision_tiles():
     TilemapActorController.add_actor_to_tile(_collision_tile, building)
+
+  building_added.emit(building)
 
 func remove_building(building: Node2D) -> void:
   for _collision_tile in building.get_collision_tiles():
@@ -45,4 +49,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
       _current_ghost.queue_free()
       _current_ghost = null
+      Store.set_state("selected_build_option", null)
+      
+    if event.is_action_released("clear_selection"):
       Store.set_state("selected_build_option", null)
