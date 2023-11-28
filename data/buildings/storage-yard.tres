@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=3 format=3 uid="uid://11kok2lcvjsg"]
+
+[ext_resource type="Script" path="res://data/building_data.gd" id="1_t1txe"]
+[ext_resource type="Texture2D" uid="uid://n1alkly1a3kl" path="res://sprites/buildings/logger-hut.png" id="2_6ij37"]
+
+[resource]
+script = ExtResource("1_t1txe")
+sprite = ExtResource("2_6ij37")
+collision_mask = Array[Vector2]([Vector2(0.508333, 0.735714), Vector2(-0.491667, 0.735714), Vector2(0.00833333, -0.0142857)])
+effect_mask = Array[Vector2]([Vector2(1.00833, -0.0142857), Vector2(1.50833, 0.735714), Vector2(1.00833, 1.48571), Vector2(0.00833333, 1.48571), Vector2(-0.991667, 1.48571), Vector2(-1.49167, 0.735714), Vector2(-0.991667, -0.0142857), Vector2(0.508333, -0.764286), Vector2(-0.491667, -0.764286), Vector2(-1.49167, -0.764286), Vector2(-1.99167, -0.0142857), Vector2(-2.49167, 0.735714), Vector2(-1.99167, 1.48571), Vector2(-1.49167, 2.23571), Vector2(-0.491667, 2.23571), Vector2(0.508333, 2.23571), Vector2(1.50833, 2.23571), Vector2(2.00833, 1.48571), Vector2(2.50833, 0.735714), Vector2(2.00833, -0.0142857), Vector2(1.50833, -0.764286), Vector2(1.00833, -1.51429), Vector2(0.00833333, -1.51429), Vector2(-0.991667, -1.51429), Vector2(-1.99167, -1.51429), Vector2(-2.49167, -0.764286), Vector2(-2.99167, -0.0142857), Vector2(-3.49167, 0.735714), Vector2(-2.99167, 1.48571), Vector2(-2.49167, 2.23571), Vector2(-1.99167, 2.98571), Vector2(-0.991667, 2.98571), Vector2(0.00833333, 2.98571), Vector2(1.00833, 2.98571), Vector2(2.00833, 2.98571), Vector2(2.50833, 2.23571), Vector2(3.00833, 1.48571), Vector2(3.50833, 0.735714), Vector2(3.00833, -0.0142857), Vector2(2.50833, -0.764286), Vector2(2.00833, -1.51429), Vector2(1.50833, -2.26429), Vector2(0.508333, -2.26429), Vector2(-0.491667, -2.26429), Vector2(-1.49167, -2.26429)])
+name = "Storage Yard"
+description = "Stores resources and provides a small logistics area."
+resources_collected = Array[String]([])
+resource_collection_rate_per_tile = 0.0
+building_flags = Array[int]([0])
+building_cost = {}

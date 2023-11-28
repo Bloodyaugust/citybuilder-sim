@@ -17,15 +17,52 @@ enum BUILDING_TILE_TYPES {
 @onready var _building_name_edit: LineEdit = %BuildingNameEdit
 @onready var _building_description_edit: TextEdit = %BuildingDescriptionEdit
 
-var _collision_tiles: Array[Vector2i] = []
+var _collision_tiles: Array[Vector2i] = [Vector2i(0, 0)]
 var _current_tile_type: BUILDING_TILE_TYPES = BUILDING_TILE_TYPES.COLLISION
 var _effect_tiles: Array[Vector2i] = []
+var _hovered_tile: Vector2i
+
+
+func _draw():
+	draw_circle(
+		to_local(GDUtil.get_global_position_from_tile(_hovered_tile, _tilemap)), 5.0, Color.RED
+	)
+
+	for _collision_tile in _collision_tiles:
+		draw_circle(
+			to_local(GDUtil.get_global_position_from_tile(_collision_tile, _tilemap)),
+			35.0,
+			Color.ORANGE_RED
+		)
+	for _effect_tile in _effect_tiles:
+		draw_circle(
+			to_local(GDUtil.get_global_position_from_tile(_effect_tile, _tilemap)),
+			5.0,
+			Color.YELLOW_GREEN
+		)
 
 
 func _on_save_button_pressed() -> void:
 	var _new_building: BuildingData = BuildingData.new()
 	var _collision_mask: Array[Vector2] = []
 	var _effect_mask: Array[Vector2] = []
+
+	_collision_mask.assign(
+		_collision_tiles.map(
+			func(_tile: Vector2i): return (
+				GDUtil.get_global_position_from_tile(_tile, _tilemap)
+				/ Vector2(_tilemap.tile_set.tile_size)
+			)
+		)
+	)
+	_effect_mask.assign(
+		_effect_tiles.map(
+			func(_tile: Vector2i): return (
+				GDUtil.get_global_position_from_tile(_tile, _tilemap)
+				/ Vector2(_tilemap.tile_set.tile_size)
+			)
+		)
+	)
 
 	_new_building.name = _building_name_edit.text
 	_new_building.description = _building_description_edit.text
@@ -36,7 +73,7 @@ func _on_save_button_pressed() -> void:
 
 
 func _on_clear_button_pressed() -> void:
-	_collision_tiles = []
+	_collision_tiles = [Vector2i(0, 0)]
 	_effect_tiles = []
 	_file_name_edit.text = ""
 	_building_name_edit.text = ""
@@ -64,3 +101,25 @@ func _ready():
 	_exit_button.pressed.connect(_on_exit_button_pressed)
 	_set_collision_button.pressed.connect(_on_set_collision_button_pressed)
 	_set_effect_button.pressed.connect(_on_set_effect_button_pressed)
+
+
+func _process(_delta):
+	var _mouse_position: Vector2 = get_global_mouse_position()
+
+	_hovered_tile = GDUtil.get_tile_from_global_position(_mouse_position, _tilemap)
+
+	queue_redraw()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_released("confirm_building"):
+		if _hovered_tile in _collision_tiles:
+			_collision_tiles.erase(_hovered_tile)
+
+		if _hovered_tile in _effect_tiles:
+			_effect_tiles.erase(_hovered_tile)
+
+		if _current_tile_type == BUILDING_TILE_TYPES.COLLISION:
+			_collision_tiles.append(_hovered_tile)
+		else:
+			_effect_tiles.append(_hovered_tile)
