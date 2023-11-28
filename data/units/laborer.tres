@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://b8hmmunemlyyw"]
+
+[ext_resource type="Script" path="res://data/unit_data.gd" id="1_2h6ow"]
+[ext_resource type="Texture2D" uid="uid://dgo6wkr1mdsug" path="res://sprites/units/laborer.png" id="2_7vm0r"]
+
+[resource]
+script = ExtResource("1_2h6ow")
+speed = 100.0
+sprite = ExtResource("2_7vm0r")

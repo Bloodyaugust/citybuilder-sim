@@ -133,11 +133,11 @@ script = ExtResource("2_bsr08")
 unique_name_in_owner = true
 
 [node name="StartingBuilding" parent="StartingBuildings" instance=ExtResource("3_qxf0i")]
-position = Vector2(-2, -20)
+position = Vector2(14, -224)
 data = ExtResource("4_acv8b")
 
 [node name="StartingBuilding2" parent="StartingBuildings" instance=ExtResource("3_qxf0i")]
-position = Vector2(-121, -28)
+position = Vector2(-64, 70)
 data = ExtResource("5_d6b3e")
 
 [node name="StartingResources" type="Node2D" parent="."]

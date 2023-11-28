@@ -3,6 +3,9 @@ class_name Building
 
 signal request_logistics_pickup(building: Node2D)
 
+const UNIT_SCENE: PackedScene = preload("res://actors/Unit.tscn")
+const LABORER_UNIT_DATA: UnitData = preload("res://data/units/laborer.tres")
+
 @export var data: BuildingData
 
 @onready var _sprite: Sprite2D = %Sprite2D
@@ -97,6 +100,21 @@ func pickup_stored_resources() -> Dictionary:
 	return _resources_copy
 
 
+func store_resources(resources: Dictionary) -> void:
+	if GameConstants.BUILDING_FLAGS.LOGISTICS in data.building_flags:
+		_logistics_controller.add_resources_to_logistic_network_by_id(
+			_logistics_controller.get_building_logistic_network_id(self), resources
+		)
+	else:
+		for _resource_id in resources.keys():
+			if _stored_resources.has(_resource_id):
+				_stored_resources[_resource_id] = (
+					_stored_resources[_resource_id] + resources[_resource_id]
+				)
+			else:
+				_stored_resources[_resource_id] = resources[_resource_id]
+
+
 func _draw():
 	if _draw_details:
 		for _collision_tile in _collision_tiles:
@@ -118,15 +136,15 @@ func _exit_tree() -> void:
 	_building_controller.remove_building(self)
 
 
-func _on_request_logistics_pickup(building: Node2D) -> void:
-	var _requesting_building_stored_resources: Dictionary = building.pickup_stored_resources()
+func _on_request_logistics_pickup(building: Building) -> void:
+	var _new_laborer: Unit = UNIT_SCENE.instantiate()
 
-	print(_tilemap.get_nav_path(_origin_tile, building.get_origin_tile()))
+	_new_laborer.global_position = global_position
+	_new_laborer.data = LABORER_UNIT_DATA
+	_new_laborer.dispatch_building = self
+	_new_laborer.target_building = building
 
-	_logistics_controller.add_resources_to_logistic_network_by_id(
-		_logistics_controller.get_building_logistic_network_id(self),
-		_requesting_building_stored_resources
-	)
+	get_parent().add_child(_new_laborer)
 
 
 func _on_store_state_changed(state_key, substate):
@@ -156,7 +174,7 @@ func _process(delta) -> void:
 				)
 			)
 
-			if _stored_resources[_resource_id] > 1.0:
+			if _stored_resources[_resource_id] > 1.0 && !_logistics_pickup_requested:
 				_logistics_pickup_requested = true
 				request_logistics_pickup.emit(self)
 		else:
