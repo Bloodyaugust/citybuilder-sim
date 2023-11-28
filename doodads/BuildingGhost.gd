@@ -9,50 +9,68 @@ var _collision_tiles: Array[Vector2i]
 var _effect_tiles: Array[Vector2i]
 var _origin_tile: Vector2i
 
+
 func is_buildable() -> bool:
-  for _collision_tile in _collision_tiles:
-    if TilemapActorController.get_tile_actor(_collision_tile):
-      return false
+	for _collision_tile in _collision_tiles:
+		if TilemapActorController.get_tile_actor(_collision_tile):
+			return false
 
-  var _tile_network: Variant = LogisticsController.get_tile_logistic_network_id(_origin_tile)
+	var _tile_network: Variant = LogisticsController.get_tile_logistic_network_id(_origin_tile)
 
-  if !_tile_network:
-    return false
+	if !_tile_network:
+		return false
 
-  var _network_resources: Dictionary = LogisticsController.get_logistic_network_resources_by_id(_tile_network)
+	var _network_resources: Dictionary = LogisticsController.get_logistic_network_resources_by_id(
+		_tile_network
+	)
 
-  for _resource_id in data.building_cost.keys():
-    if !_network_resources.has(_resource_id):
-      return false
+	for _resource_id in data.building_cost.keys():
+		if !_network_resources.has(_resource_id):
+			return false
 
-    if data.building_cost[_resource_id] > _network_resources[_resource_id]:
-      return false
+		if data.building_cost[_resource_id] > _network_resources[_resource_id]:
+			return false
 
-  return true
+	return true
+
 
 func _draw():
-  for _collision_tile in _collision_tiles:
-    draw_circle(to_local(GDUtil.get_global_position_from_tile(_collision_tile, _tilemap)), 35.0, Color.ORANGE_RED)
+	for _collision_tile in _collision_tiles:
+		draw_circle(
+			to_local(GDUtil.get_global_position_from_tile(_collision_tile, _tilemap)),
+			35.0,
+			Color.ORANGE_RED
+		)
 
-  for _effect_tile in _effect_tiles:
-    draw_circle(to_local(GDUtil.get_global_position_from_tile(_effect_tile, _tilemap)), 5.0, Color.YELLOW_GREEN)
+	for _effect_tile in _effect_tiles:
+		draw_circle(
+			to_local(GDUtil.get_global_position_from_tile(_effect_tile, _tilemap)),
+			5.0,
+			Color.YELLOW_GREEN
+		)
+
 
 func _process(delta):
-  var _mouse_position: Vector2 = get_global_mouse_position()
-  
-  _effect_tiles = []
-  _collision_tiles = []
+	var _mouse_position: Vector2 = get_global_mouse_position()
 
-  _origin_tile = GDUtil.get_tile_from_global_position(_mouse_position, _tilemap)
-  global_position = GDUtil.get_global_position_from_tile(_origin_tile, _tilemap)
+	_effect_tiles = []
+	_collision_tiles = []
 
-  for _collision_tile_offset in data.collision_mask:
-    _collision_tiles.append(GDUtil.get_tile_from_offset_global(global_position, _collision_tile_offset, _tilemap))
+	_origin_tile = GDUtil.get_tile_from_global_position(_mouse_position, _tilemap)
+	global_position = GDUtil.get_global_position_from_tile(_origin_tile, _tilemap)
 
-  for _effect_tile_offset in data.effect_mask:
-    _effect_tiles.append(GDUtil.get_tile_from_offset_global(global_position, _effect_tile_offset, _tilemap))
+	for _collision_tile_offset in data.collision_mask:
+		_collision_tiles.append(
+			GDUtil.get_tile_from_offset_global(global_position, _collision_tile_offset, _tilemap)
+		)
 
-  queue_redraw()
+	for _effect_tile_offset in data.effect_mask:
+		_effect_tiles.append(
+			GDUtil.get_tile_from_offset_global(global_position, _effect_tile_offset, _tilemap)
+		)
+
+	queue_redraw()
+
 
 func _ready():
-  _sprite.texture = data.sprite
+	_sprite.texture = data.sprite

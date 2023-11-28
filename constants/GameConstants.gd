@@ -1,7 +1,7 @@
 extends Node
 
 enum BUILDING_FLAGS {
-  LOGISTICS,
+	LOGISTICS,
 }
 
 const GAME_IN_PROGRESS = "GAME_IN_PROGRESS"

@@ -13,3 +13,4 @@ description = "Provides logistics services to buildings in range"
 resources_collected = Array[String]([])
 resource_collection_rate_per_tile = 0.15
 building_flags = Array[int]([0])
+building_cost = {}
