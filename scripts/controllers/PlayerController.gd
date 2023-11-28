@@ -1,6 +1,7 @@
 extends Node2D
+class_name PlayerController
 
-@onready var _tilemap: Surface = %TileMap
+@onready var _tilemap: Surface = get_tree().get_first_node_in_group("TileMap")
 
 var _hovered_tile_position: Vector2
 

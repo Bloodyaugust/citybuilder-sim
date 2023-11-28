@@ -5,6 +5,13 @@ var data: BuildingData
 @onready var _sprite: Sprite2D = %Sprite2D
 @onready var _tilemap: Surface = get_tree().get_first_node_in_group("TileMap")
 
+@onready var _logistics_controller: LogisticsController = get_tree().get_first_node_in_group(
+	"LogisticsController"
+)
+@onready var _tilemap_actor_controller: TileMapActorController = get_tree().get_first_node_in_group(
+	"TileMapActorController"
+)
+
 var _collision_tiles: Array[Vector2i]
 var _effect_tiles: Array[Vector2i]
 var _origin_tile: Vector2i
@@ -14,16 +21,16 @@ func is_buildable() -> bool:
 	for _collision_tile in _collision_tiles:
 		if (
 			!_tilemap.get_tile_is_used(_collision_tile)
-			|| TilemapActorController.get_tile_actor(_collision_tile)
+			|| _tilemap_actor_controller.get_tile_actor(_collision_tile)
 		):
 			return false
 
-	var _tile_network: Variant = LogisticsController.get_tile_logistic_network_id(_origin_tile)
+	var _tile_network: Variant = _logistics_controller.get_tile_logistic_network_id(_origin_tile)
 
 	if !_tile_network:
 		return false
 
-	var _network_resources: Dictionary = LogisticsController.get_logistic_network_resources_by_id(
+	var _network_resources: Dictionary = _logistics_controller.get_logistic_network_resources_by_id(
 		_tile_network
 	)
 

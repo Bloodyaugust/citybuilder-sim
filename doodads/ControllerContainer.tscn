@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://21b1d7xdxasf"]
+
+[ext_resource type="Script" path="res://scripts/controllers/BuildingController.gd" id="1_elej1"]
+[ext_resource type="Script" path="res://scripts/controllers/LogisticsController.gd" id="2_7jfw8"]
+[ext_resource type="Script" path="res://scripts/controllers/PlayerController.gd" id="3_5ttox"]
+[ext_resource type="Script" path="res://scripts/controllers/TilemapActorController.gd" id="4_wovvi"]
+
+[node name="ControllerContainer" type="Node2D"]
+z_index = 100
+
+[node name="BuildingController" type="Node2D" parent="." groups=["BuildingController"]]
+unique_name_in_owner = true
+script = ExtResource("1_elej1")
+
+[node name="LogisticsController" type="Node2D" parent="." groups=["LogisticsController"]]
+unique_name_in_owner = true
+script = ExtResource("2_7jfw8")
+
+[node name="PlayerController" type="Node2D" parent="." groups=["PlayerController"]]
+unique_name_in_owner = true
+script = ExtResource("3_5ttox")
+
+[node name="TileMapActorController" type="Node2D" parent="." groups=["TileMapActorController"]]
+unique_name_in_owner = true
+script = ExtResource("4_wovvi")

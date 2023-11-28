@@ -1,5 +1,7 @@
 extends Node
 
+const CONTROLLER_CONTAINER_SCENE: PackedScene = preload("res://doodads/ControllerContainer.tscn")
+const LEVEL_0_SCENE: PackedScene = preload("res://scenes/levels/level-0.tscn")
 const PersistentStore := preload("res://scripts/classes/PersistentStore.gd")
 
 signal state_changed(state_key, substate)
@@ -13,10 +15,20 @@ var state: Dictionary = {
 	"selected_build_option": null,
 }
 
+@onready var _level_container: Node2D = get_tree().get_first_node_in_group("LevelContainer")
+
 
 func start_game() -> void:
 	ViewController.set_client_view(ViewController.CLIENT_VIEWS.NONE)
 	set_state("game", GameConstants.GAME_STARTING)
+
+	var _new_level = LEVEL_0_SCENE.instantiate()
+	var _new_controller_container = CONTROLLER_CONTAINER_SCENE.instantiate()
+
+	_level_container.add_child(_new_level)
+	_level_container.add_child(_new_controller_container)
+
+	set_state("game", GameConstants.GAME_STARTED)
 
 
 func save_persistent_store() -> void:

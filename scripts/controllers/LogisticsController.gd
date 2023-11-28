@@ -1,7 +1,11 @@
 extends Node2D
+class_name LogisticsController
 
 var logistics_networks: Dictionary = {}
 var logistics_network_storages: Dictionary = {}
+
+@onready var _building_controller: BuildingController = %BuildingController
+@onready var _tilemap_actor_controller: TileMapActorController = %TileMapActorController
 
 
 func add_resources_to_logistic_network_by_id(network_id: int, resources: Dictionary) -> void:
@@ -74,7 +78,7 @@ func _on_building_added(building: Node2D) -> void:
 			_found_network.append(building)
 		else:
 			for _effect_tile in building.get_effect_tiles():
-				var _tile_actor: Variant = TilemapActorController.get_tile_actor(_effect_tile)
+				var _tile_actor: Variant = _tilemap_actor_controller.get_tile_actor(_effect_tile)
 
 				if (
 					_tile_actor
@@ -91,4 +95,4 @@ func _on_building_added(building: Node2D) -> void:
 
 
 func _ready():
-	BuildingController.building_added.connect(_on_building_added)
+	_building_controller.building_added.connect(_on_building_added)

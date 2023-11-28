@@ -1,4 +1,5 @@
 extends Node2D
+class_name Building
 
 signal request_logistics_pickup(building: Node2D)
 
@@ -6,6 +7,16 @@ signal request_logistics_pickup(building: Node2D)
 
 @onready var _sprite: Sprite2D = %Sprite2D
 @onready var _tilemap: Surface = get_tree().get_first_node_in_group("TileMap")
+
+@onready var _building_controller: BuildingController = get_tree().get_first_node_in_group(
+	"BuildingController"
+)
+@onready var _logistics_controller: LogisticsController = get_tree().get_first_node_in_group(
+	"LogisticsController"
+)
+@onready var _tilemap_actor_controller: TileMapActorController = get_tree().get_first_node_in_group(
+	"TileMapActorController"
+)
 
 var _collision_tiles: Array[Vector2i]
 var _draw_details: bool = false
@@ -71,8 +82,8 @@ func get_selection_details() -> Dictionary:
 
 func get_stored_resources() -> Dictionary:
 	if GameConstants.BUILDING_FLAGS.LOGISTICS in data.building_flags:
-		return LogisticsController.get_logistic_network_resources_by_id(
-			LogisticsController.get_building_logistic_network_id(self)
+		return _logistics_controller.get_logistic_network_resources_by_id(
+			_logistics_controller.get_building_logistic_network_id(self)
 		)
 
 	return _stored_resources
@@ -104,7 +115,7 @@ func _draw():
 
 
 func _exit_tree() -> void:
-	BuildingController.remove_building(self)
+	_building_controller.remove_building(self)
 
 
 func _on_request_logistics_pickup(building: Node2D) -> void:
@@ -112,8 +123,8 @@ func _on_request_logistics_pickup(building: Node2D) -> void:
 
 	print(_tilemap.get_nav_path(_origin_tile, building.get_origin_tile()))
 
-	LogisticsController.add_resources_to_logistic_network_by_id(
-		LogisticsController.get_building_logistic_network_id(self),
+	_logistics_controller.add_resources_to_logistic_network_by_id(
+		_logistics_controller.get_building_logistic_network_id(self),
 		_requesting_building_stored_resources
 	)
 
@@ -158,7 +169,7 @@ func _process(delta) -> void:
 
 func _ready():
 	Store.state_changed.connect(_on_store_state_changed)
-	TilemapActorController.tile_actor_changed.connect(_on_tilemap_tile_actor_changed)
+	_tilemap_actor_controller.tile_actor_changed.connect(_on_tilemap_tile_actor_changed)
 
 	_origin_tile = GDUtil.get_tile_from_global_position(global_position, _tilemap)
 	global_position = GDUtil.get_global_position_from_tile(_origin_tile, _tilemap)
@@ -174,8 +185,7 @@ func _ready():
 		)
 
 	_sprite.texture = data.sprite
-
-	BuildingController.add_building(self)
+	_building_controller.add_building(self)
 	queue_redraw()
 	_recalculate_resources()
 	_recalculate_logistics_children()
@@ -188,7 +198,7 @@ func _recalculate_logistics_children() -> void:
 	_logistics_children = []
 
 	for _effect_tile in _effect_tiles:
-		var _tile_actor: Variant = TilemapActorController.get_tile_actor(_effect_tile)
+		var _tile_actor: Variant = _tilemap_actor_controller.get_tile_actor(_effect_tile)
 
 		if (
 			_tile_actor
@@ -204,7 +214,7 @@ func _recalculate_resources() -> void:
 	_collecting_resources = {}
 
 	for _effect_tile in _effect_tiles:
-		var _tile_actor: Variant = TilemapActorController.get_tile_actor(_effect_tile)
+		var _tile_actor: Variant = _tilemap_actor_controller.get_tile_actor(_effect_tile)
 
 		if _tile_actor && _tile_actor.has_method("get_resource_id"):
 			var _resource_id: String = _tile_actor.get_resource_id()

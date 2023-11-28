@@ -1,7 +1,13 @@
 extends TileMap
 class_name Surface
 
+const BUILDING_SCENE: PackedScene = preload("res://actors/Building.tscn")
+const RESOURCE_SCENE: PackedScene = preload("res://actors/Resource.tscn")
+
 var navigation: AStar2D = AStar2D.new()
+
+@onready var _starting_buildings_container: Node2D = %StartingBuildings
+@onready var _starting_resources_container: Node2D = %StartingResources
 
 var _used_cells: Array[Vector2i] = get_used_cells(0)
 var _path_cache: Dictionary = {}
@@ -42,6 +48,28 @@ func get_nav_point_index_from_tile(tile: Vector2i) -> int:
 	return _used_cells.find(tile)
 
 
+func _on_store_state_changed(state_key: String, substate) -> void:
+	match state_key:
+		"game":
+			match substate:
+				GameConstants.GAME_STARTED:
+					for _starting_building in _starting_buildings_container.get_children():
+						var _new_building: Building = BUILDING_SCENE.instantiate()
+
+						_new_building.data = _starting_building.data
+						_new_building.global_position = _starting_building.global_position
+
+						add_child(_new_building)
+
+					for _starting_resource in _starting_resources_container.get_children():
+						var _new_resource: ResourceActor = RESOURCE_SCENE.instantiate()
+
+						_new_resource.data = _starting_resource.data
+						_new_resource.global_position = _starting_resource.global_position
+
+						add_child(_new_resource)
+
+
 func _init():
 	for _tile_index in len(_used_cells):
 		navigation.add_point(_tile_index, Vector2(_used_cells[_tile_index]))
@@ -54,3 +82,7 @@ func _init():
 
 			if _tile_nav_point_index != -1:
 				navigation.connect_points(_tile_index, _tile_nav_point_index)
+
+
+func _ready():
+	Store.state_changed.connect(_on_store_state_changed)

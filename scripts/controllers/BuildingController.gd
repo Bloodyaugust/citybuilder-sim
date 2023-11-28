@@ -1,4 +1,5 @@
 extends Node2D
+class_name BuildingController
 
 signal building_added(building: Node2D)
 
@@ -6,19 +7,21 @@ var BUILDING_DATA: Array[BuildingData]
 var BUILDING_ACTOR: PackedScene = preload("res://actors/Building.tscn")
 var BUILDING_GHOST: PackedScene = preload("res://doodads/BuildingGhost.tscn")
 
+@onready var _tilemap_actor_controller: TileMapActorController = %TileMapActorController
+
 var _current_ghost = null
 
 
 func add_building(building: Node2D) -> void:
 	for _collision_tile in building.get_collision_tiles():
-		TilemapActorController.add_actor_to_tile(_collision_tile, building)
+		_tilemap_actor_controller.add_actor_to_tile(_collision_tile, building)
 
 	building_added.emit(building)
 
 
 func remove_building(building: Node2D) -> void:
 	for _collision_tile in building.get_collision_tiles():
-		TilemapActorController.remove_actor_from_tile(_collision_tile)
+		_tilemap_actor_controller.remove_actor_from_tile(_collision_tile)
 
 
 func _on_store_state_changed(state_key: String, substate) -> void:

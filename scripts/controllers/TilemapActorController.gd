@@ -1,4 +1,5 @@
 extends Node2D
+class_name TileMapActorController
 
 signal tile_actor_changed(tile: Vector2i)
 
@@ -33,7 +34,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		var _selecting_tile: Vector2i = GDUtil.get_tile_from_global_position(
 			get_global_mouse_position(), _tilemap
 		)
-		var _selected_actor: Variant = TilemapActorController.get_tile_actor(_selecting_tile)
+		var _selected_actor: Variant = get_tile_actor(_selecting_tile)
 
 		if _selected_actor:
 			Store.set_state("selected_actor", _selected_actor)

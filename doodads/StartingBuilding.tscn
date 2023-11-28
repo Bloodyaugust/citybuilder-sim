@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsgv5nv5djali"]
+
+[ext_resource type="Script" path="res://doodads/StartingBuilding.gd" id="1_rxhna"]
+
+[node name="StartingBuilding" type="Node2D"]
+script = ExtResource("1_rxhna")
