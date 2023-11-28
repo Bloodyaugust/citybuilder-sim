@@ -12,7 +12,7 @@ func _on_state_changed(state_key, substate):
 			_update_details(substate)
 
 
-func _process(delta):
+func _process(_delta):
 	if Store.state.selected_actor:
 		_update_details(Store.state.selected_actor)
 

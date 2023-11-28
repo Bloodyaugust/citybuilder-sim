@@ -2,7 +2,7 @@ extends Node2D
 
 @export var data: ResourceData
 
-@onready var _tilemap: TileMap = TilemapActorController.get_tilemap()
+@onready var _tilemap: Surface = TilemapActorController.get_tilemap()
 @onready var _origin_tile: Vector2i = GDUtil.get_tile_from_global_position(global_position, _tilemap)
 @onready var _sprite: Sprite2D = %Sprite2D
 

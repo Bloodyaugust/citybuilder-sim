@@ -12,7 +12,7 @@ func get_tile_is_used(tile: Vector2i) -> bool:
 
 
 func get_nav_path(from_tile: Vector2i, to_tile: Vector2i) -> Array[Vector2]:
-	var _returned_path: Array[Vector2]
+	var _returned_path: Array[Vector2] = []
 
 	if _path_cache.has(from_tile) && _path_cache[from_tile].has(to_tile):
 		_returned_path.assign(_path_cache[from_tile][to_tile])

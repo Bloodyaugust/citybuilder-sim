@@ -53,7 +53,7 @@ func _draw():
 		)
 
 
-func _process(delta):
+func _process(_delta):
 	var _mouse_position: Vector2 = get_global_mouse_position()
 
 	_effect_tiles = []

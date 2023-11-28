@@ -6,8 +6,6 @@ var BUILDING_DATA: Array[BuildingData]
 var BUILDING_ACTOR: PackedScene = preload("res://actors/Building.tscn")
 var BUILDING_GHOST: PackedScene = preload("res://doodads/BuildingGhost.tscn")
 
-@onready var _tilemap: TileMap = get_tree().get_first_node_in_group("TileMap")
-
 var _current_ghost = null
 
 

@@ -4,7 +4,7 @@ signal tile_actor_changed(tile: Vector2i)
 
 var actor_dict: Dictionary = {}
 
-@onready var _tilemap: TileMap = get_tree().get_first_node_in_group("TileMap")
+@onready var _tilemap: Surface = get_tree().get_first_node_in_group("TileMap")
 
 
 func add_actor_to_tile(tile: Vector2i, actor: Variant) -> void:
@@ -19,7 +19,7 @@ func get_tile_actor(tile: Vector2i) -> Variant:
 	return false
 
 
-func get_tilemap() -> TileMap:
+func get_tilemap() -> Surface:
 	return _tilemap
 
 
