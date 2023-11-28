@@ -1,6 +1,15 @@
 extends Node2D
 
 var logistics_networks: Dictionary = {}
+var logistics_network_storages: Dictionary = {}
+
+func add_resources_to_logistic_network_by_id(network_id: int, resources: Dictionary) -> void:
+  if logistics_network_storages.has(network_id):
+    for _resource_id in resources.keys():
+      if logistics_network_storages[network_id].has(_resource_id):
+        logistics_network_storages[network_id][_resource_id] = logistics_network_storages[network_id][_resource_id] + resources[_resource_id]
+      else:
+        logistics_network_storages[network_id][_resource_id] = resources[_resource_id]        
 
 func get_building_logistic_network(building: Node2D) -> Variant:
   var _network_id: Variant = get_building_logistic_network_id(building)
@@ -26,18 +35,11 @@ func get_building_logistic_network_id(building: Node2D) -> Variant:
 
   return false
 
-func get_logistic_network_resources(network: Array) -> Dictionary:
-  var _total_resources: Dictionary = {}
+func get_logistic_network_resources_by_id(network_id: int) -> Dictionary:
+  if logistics_network_storages.has(network_id):
+    return logistics_network_storages[network_id]
 
-  for _network_building in network:
-    var _network_building_stored_resources: Dictionary = _network_building.get_stored_resources()
-    for _resource_id in _network_building_stored_resources.keys():
-      if _total_resources.has(_resource_id):
-        _total_resources[_resource_id] = _total_resources[_resource_id] + _network_building_stored_resources[_resource_id]
-      else:
-        _total_resources[_resource_id] = _network_building_stored_resources[_resource_id]
-
-  return _total_resources
+  return {}
 
 func get_tile_logistic_network(tile: Vector2i) -> Variant:
   var _network_id: Variant = get_tile_logistic_network_id(tile)
@@ -72,6 +74,7 @@ func _on_building_added(building: Node2D) -> void:
         _found_network.append(building)
       else:
         logistics_networks[building.get_instance_id()] = [building]
+        logistics_network_storages[building.get_instance_id()] = {}
 
 func _ready():
   BuildingController.building_added.connect(_on_building_added)

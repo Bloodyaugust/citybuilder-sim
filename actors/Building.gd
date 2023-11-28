@@ -23,8 +23,9 @@ func get_effect_tiles() -> Array[Vector2i]:
   return _effect_tiles
 
 func get_selection_details() -> Dictionary:
+  var _used_stored_resources: Dictionary = get_stored_resources()
   var _resources_string: String = "\r\n".join(PackedStringArray(_collecting_resources.keys().map(func (resource): return "- {id} x{num} tiles ({total}/sec)".format({"id": resource, "num": _collecting_resources[resource], "total": _collecting_resources[resource] * data.resource_collection_rate_per_tile}))))
-  var _stored_resources_string: String = "\r\n".join(PackedStringArray(_stored_resources.keys().map(func (resource): return "- {id}: {num}".format({"id": resource, "num": "%d" % _stored_resources[resource]}))))
+  var _stored_resources_string: String = "\r\n".join(PackedStringArray(_used_stored_resources.keys().map(func (resource): return "- {id}: {num}".format({"id": resource, "num": "%d" % _used_stored_resources[resource]}))))
   return {
     "name": data.name,
     "sprite": data.sprite,
@@ -32,6 +33,9 @@ func get_selection_details() -> Dictionary:
   }
   
 func get_stored_resources() -> Dictionary:
+  if GameConstants.BUILDING_FLAGS.LOGISTICS in data.building_flags:
+    return LogisticsController.get_logistic_network_resources_by_id(LogisticsController.get_building_logistic_network_id(self))
+
   return _stored_resources
   
 func pickup_stored_resources() -> Dictionary:
@@ -54,12 +58,8 @@ func _exit_tree() -> void:
 
 func _on_request_logistics_pickup(building: Node2D) -> void:
   var _requesting_building_stored_resources: Dictionary = building.pickup_stored_resources()
-  
-  for _resource_id in _requesting_building_stored_resources.keys():
-    if _stored_resources.has(_resource_id):
-      _stored_resources[_resource_id] = _stored_resources[_resource_id] + _requesting_building_stored_resources[_resource_id]
-    else:
-      _stored_resources[_resource_id] = _requesting_building_stored_resources[_resource_id]
+
+  LogisticsController.add_resources_to_logistic_network_by_id(LogisticsController.get_building_logistic_network_id(self), _requesting_building_stored_resources)
 
 func _on_store_state_changed(state_key, substate):
   match state_key:

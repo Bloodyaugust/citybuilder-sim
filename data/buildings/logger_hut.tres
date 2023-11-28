@@ -14,5 +14,5 @@ resources_collected = Array[String](["wood"])
 resource_collection_rate_per_tile = 0.15
 building_flags = Array[int]([])
 building_cost = {
-"wood": 10.0
+"wood": 1.0
 }
