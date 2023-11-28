@@ -50,6 +50,7 @@ func get_selection_details() -> Dictionary:
 			)
 		)
 	)
+
 	return {
 		"name": data.name,
 		"sprite": data.sprite,
