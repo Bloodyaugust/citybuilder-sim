@@ -10,3 +10,5 @@ class_name BuildingData
 @export var resource_collection_rate_per_tile: float
 @export var building_flags: Array[GameConstants.BUILDING_FLAGS]
 @export var building_cost: Dictionary
+@export var resources_generated: Array[String]
+@export var resource_generation_rate: Array[String]

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=3 format=3 uid="uid://dudms2sotqhrk"]
+
+[ext_resource type="Script" path="res://data/building_data.gd" id="1_wju5a"]
+[ext_resource type="Texture2D" uid="uid://dc0x0gsnjoun8" path="res://sprites/buildings/small_house.png" id="2_506fy"]
+
+[resource]
+script = ExtResource("1_wju5a")
+sprite = ExtResource("2_506fy")
+collision_mask = Array[Vector2]([Vector2(0, 0)])
+effect_mask = Array[Vector2]([Vector2(1, 0), Vector2(-1, 0)])
+name = "Small House"
+description = "Houses a small amount of population."
+resources_collected = Array[String]([])
+resource_collection_rate_per_tile = 0.0
+building_flags = Array[int]([])
+building_cost = {}
+resources_generated = Array[String]([])
+resource_generation_rate = Array[String]([])

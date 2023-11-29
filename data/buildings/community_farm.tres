@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=3 format=3 uid="uid://dbyrfr2x0mwas"]
+
+[ext_resource type="Script" path="res://data/building_data.gd" id="1_0w6d2"]
+[ext_resource type="Texture2D" uid="uid://c6jwmqt18o0bu" path="res://sprites/buildings/farm.png" id="2_bu0bf"]
+
+[resource]
+script = ExtResource("1_0w6d2")
+sprite = ExtResource("2_bu0bf")
+collision_mask = Array[Vector2]([Vector2(0, 0)])
+effect_mask = Array[Vector2]([Vector2(1, 0), Vector2(0.5, 0.75), Vector2(-0.5, 0.75), Vector2(-1, 0), Vector2(-0.5, -0.75), Vector2(0.5, -0.75)])
+name = "Community Farm"
+description = "A small community farm that produces a minor amount of food."
+resources_collected = Array[String]([])
+resource_collection_rate_per_tile = 0.0
+building_flags = Array[int]([])
+building_cost = {}
+resources_generated = Array[String]([])
+resource_generation_rate = Array[String]([])

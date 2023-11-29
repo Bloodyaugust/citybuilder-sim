@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=3 format=3 uid="uid://ccacy3jl8xrgt"]
+
+[ext_resource type="Script" path="res://data/building_data.gd" id="1_0obiu"]
+[ext_resource type="Texture2D" uid="uid://bj3jsvj6aw4mq" path="res://sprites/buildings/water_well.png" id="2_fk7hw"]
+
+[resource]
+script = ExtResource("1_0obiu")
+sprite = ExtResource("2_fk7hw")
+collision_mask = Array[Vector2]([Vector2(0, 0)])
+effect_mask = Array[Vector2]([])
+name = "Water Well"
+description = "Generates clean water for free."
+resources_collected = Array[String]([])
+resource_collection_rate_per_tile = 0.0
+building_flags = Array[int]([])
+building_cost = {}
+resources_generated = Array[String]([])
+resource_generation_rate = Array[String]([])

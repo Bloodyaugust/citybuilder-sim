@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="BuildingData" load_steps=3 format=3 uid="uid://dn8w0k7jey80i"]
 
 [ext_resource type="Script" path="res://data/building_data.gd" id="1_7vp7f"]
-[ext_resource type="Texture2D" uid="uid://n1alkly1a3kl" path="res://sprites/buildings/logger-hut.png" id="2_qckgw"]
+[ext_resource type="Texture2D" uid="uid://dmkq2qe6os1mj" path="res://sprites/buildings/storage_yard.png" id="2_aaiwy"]
 
 [resource]
 script = ExtResource("1_7vp7f")
-sprite = ExtResource("2_qckgw")
+sprite = ExtResource("2_aaiwy")
 collision_mask = Array[Vector2]([Vector2(0, 0), Vector2(-0.5, 0.75), Vector2(0.5, 0.75)])
 effect_mask = Array[Vector2]([Vector2(0.5, -0.75), Vector2(-0.5, -0.75), Vector2(-1, 0), Vector2(-1, 1.5), Vector2(0, 1.5), Vector2(1, 1.5), Vector2(1.5, 0.75), Vector2(1, 0), Vector2(-1.5, 2.25), Vector2(-0.5, 2.25), Vector2(0.5, 2.25), Vector2(1.5, 2.25), Vector2(2, 1.5), Vector2(2.5, 0.75), Vector2(2, 0), Vector2(1.5, -0.75), Vector2(1, -1.5), Vector2(0, -1.5), Vector2(-1, -1.5), Vector2(-1.5, -0.75), Vector2(-2, 0), Vector2(-1.5, 0.75), Vector2(-2.5, 0.75), Vector2(-2, 1.5), Vector2(-1, 3), Vector2(0, 3), Vector2(1, 3), Vector2(2, 3), Vector2(2.5, 2.25), Vector2(3, 1.5), Vector2(3.5, 0.75), Vector2(3, 0), Vector2(2.5, -0.75), Vector2(2, -1.5), Vector2(1.5, -2.25), Vector2(0.5, -2.25), Vector2(-0.5, -2.25), Vector2(-1.5, -2.25), Vector2(-2, -1.5), Vector2(-2.5, -0.75), Vector2(-3, 0), Vector2(-3.5, 0.75), Vector2(-3, 1.5), Vector2(-2.5, 2.25), Vector2(-2, 3)])
 name = "Storage Yard"
@@ -16,3 +16,5 @@ resources_collected = Array[String]([])
 resource_collection_rate_per_tile = 0.0
 building_flags = Array[int]([0])
 building_cost = {}
+resources_generated = Array[String]([])
+resource_generation_rate = Array[String]([])
