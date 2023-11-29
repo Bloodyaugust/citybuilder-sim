@@ -21,3 +21,4 @@ func _ready():
 	global_position = GDUtil.get_global_position_from_tile(_origin_tile, _tilemap)
 	_sprite.texture = data.sprite
 	_tilemap_actor_controller.add_actor_to_tile(_origin_tile, self)
+	_tilemap.set_nav_point_non_tile_weight_by_tile(_origin_tile, data.nav_weight)

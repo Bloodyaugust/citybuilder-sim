@@ -16,7 +16,20 @@ var _stored_resources: Dictionary = {}
 
 
 func _process(delta):
-	global_position = global_position.move_toward(_path[_current_path_index], delta * data.speed)
+	var _tile_nav_weight: float = _tilemap.get_nav_weight_from_tile(
+		GDUtil.get_tile_from_global_position(global_position, _tilemap)
+	)
+
+	global_position = global_position.move_toward(
+		_path[_current_path_index],
+		(
+			delta
+			* (
+				data.speed
+				/ (_tile_nav_weight / 4 if _tile_nav_weight > 1.0 else _tile_nav_weight * 4)
+			)
+		)
+	)
 
 	if global_position.is_equal_approx(_path[_current_path_index]):
 		_current_path_index += 1

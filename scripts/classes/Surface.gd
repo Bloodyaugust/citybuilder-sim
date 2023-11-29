@@ -48,6 +48,18 @@ func get_nav_point_index_from_tile(tile: Vector2i) -> int:
 	return _used_cells.find(tile)
 
 
+func get_nav_weight_from_tile(tile: Vector2i) -> float:
+	return navigation.get_point_weight_scale(get_nav_point_index_from_tile(tile))
+
+
+func set_nav_point_non_tile_weight_by_tile(tile: Vector2i, weight: float) -> void:
+	var _nav_point_index: int = get_nav_point_index_from_tile(tile)
+
+	navigation.set_point_weight_scale(
+		_nav_point_index, weight + get_cell_tile_data(0, tile).get_custom_data("nav_weight")
+	)
+
+
 func _on_store_state_changed(state_key: String, substate) -> void:
 	match state_key:
 		"game":
@@ -72,7 +84,11 @@ func _on_store_state_changed(state_key: String, substate) -> void:
 
 func _init():
 	for _tile_index in len(_used_cells):
-		navigation.add_point(_tile_index, Vector2(_used_cells[_tile_index]))
+		navigation.add_point(
+			_tile_index,
+			Vector2(_used_cells[_tile_index]),
+			get_cell_tile_data(0, _used_cells[_tile_index]).get_custom_data("nav_weight")
+		)
 
 	for _tile_index in len(_used_cells):
 		var _neighboring_tiles: Array[Vector2i] = get_surrounding_cells(_used_cells[_tile_index])

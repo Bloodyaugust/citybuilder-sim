@@ -7,4 +7,5 @@
 script = ExtResource("1_du1tn")
 name = "Wood"
 id = "wood"
+nav_weight = 4.0
 sprite = ExtResource("2_qs5l8")
