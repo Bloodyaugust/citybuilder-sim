@@ -18,3 +18,4 @@ building_flags = Array[int]([0, 1])
 building_cost = {}
 resources_generated = Array[String]([])
 resource_generation_rate = Array[String]([])
+building_tab = "logistics"

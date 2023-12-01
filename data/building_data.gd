@@ -12,3 +12,4 @@ class_name BuildingData
 @export var building_cost: Dictionary
 @export var resources_generated: Array[String]
 @export var resource_generation_rate: Array[String]
+@export var building_tab: String

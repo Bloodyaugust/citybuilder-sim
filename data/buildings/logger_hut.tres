@@ -16,3 +16,6 @@ building_flags = Array[int]([])
 building_cost = {
 "wood": 1.0
 }
+resources_generated = Array[String]([])
+resource_generation_rate = Array[String]([])
+building_tab = "resources"

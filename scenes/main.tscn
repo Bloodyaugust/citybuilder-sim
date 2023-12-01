@@ -189,9 +189,67 @@ script = ExtResource("8_r2c2g")
 [node name="MarginContainer" type="MarginContainer" parent="UIRoot/GameBar/HBoxContainer/BuildOptions"]
 layout_mode = 2
 
-[node name="BuildOptionsHBox" type="HBoxContainer" parent="UIRoot/GameBar/HBoxContainer/BuildOptions/MarginContainer"]
+[node name="TabContainer" type="TabContainer" parent="UIRoot/GameBar/HBoxContainer/BuildOptions/MarginContainer"]
+layout_mode = 2
+
+[node name="Logistics" type="MarginContainer" parent="UIRoot/GameBar/HBoxContainer/BuildOptions/MarginContainer/TabContainer"]
+layout_mode = 2
+
+[node name="Logistics" type="ScrollContainer" parent="UIRoot/GameBar/HBoxContainer/BuildOptions/MarginContainer/TabContainer/Logistics"]
+layout_mode = 2
+follow_focus = true
+vertical_scroll_mode = 0
+
+[node name="BuildOptionsLogistics" type="HBoxContainer" parent="UIRoot/GameBar/HBoxContainer/BuildOptions/MarginContainer/TabContainer/Logistics/Logistics"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Resources" type="MarginContainer" parent="UIRoot/GameBar/HBoxContainer/BuildOptions/MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Resources" type="ScrollContainer" parent="UIRoot/GameBar/HBoxContainer/BuildOptions/MarginContainer/TabContainer/Resources"]
+layout_mode = 2
+follow_focus = true
+vertical_scroll_mode = 0
+
+[node name="BuildOptionsResources" type="HBoxContainer" parent="UIRoot/GameBar/HBoxContainer/BuildOptions/MarginContainer/TabContainer/Resources/Resources"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Civic" type="MarginContainer" parent="UIRoot/GameBar/HBoxContainer/BuildOptions/MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Civic" type="ScrollContainer" parent="UIRoot/GameBar/HBoxContainer/BuildOptions/MarginContainer/TabContainer/Civic"]
+layout_mode = 2
+follow_focus = true
+vertical_scroll_mode = 0
+
+[node name="BuildOptionsCivic" type="HBoxContainer" parent="UIRoot/GameBar/HBoxContainer/BuildOptions/MarginContainer/TabContainer/Civic/Civic"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Misc" type="MarginContainer" parent="UIRoot/GameBar/HBoxContainer/BuildOptions/MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Misc" type="ScrollContainer" parent="UIRoot/GameBar/HBoxContainer/BuildOptions/MarginContainer/TabContainer/Misc"]
+layout_mode = 2
+follow_focus = true
+vertical_scroll_mode = 0
+
+[node name="BuildOptionsMisc" type="HBoxContainer" parent="UIRoot/GameBar/HBoxContainer/BuildOptions/MarginContainer/TabContainer/Misc/Misc"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
 
 [node name="BetterCam" parent="." instance=ExtResource("5")]
 zoom = Vector2(0.75, 0.75)
