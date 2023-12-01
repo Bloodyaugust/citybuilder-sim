@@ -210,22 +210,23 @@ func _ready():
 
 
 func _recalculate_logistics_children() -> void:
-	for _child in _logistics_children:
-		_child.request_logistics_pickup.disconnect(_on_request_logistics_pickup)
+	if GameConstants.BUILDING_FLAGS.LOGISTICS in data.building_flags:
+		for _child in _logistics_children:
+			_child.request_logistics_pickup.disconnect(_on_request_logistics_pickup)
 
-	_logistics_children = []
+		_logistics_children = []
 
-	for _effect_tile in _effect_tiles:
-		var _tile_actor: Variant = _tilemap_actor_controller.get_tile_actor(_effect_tile)
+		for _effect_tile in _effect_tiles:
+			var _tile_actor: Variant = _tilemap_actor_controller.get_tile_actor(_effect_tile)
 
-		if (
-			_tile_actor
-			&& _tile_actor.has_method("get_stored_resources")
-			&& GameConstants.BUILDING_FLAGS.LOGISTICS not in _tile_actor.data.building_flags
-			&& _tile_actor not in _logistics_children
-		):
-			_logistics_children.append(_tile_actor)
-			_tile_actor.request_logistics_pickup.connect(_on_request_logistics_pickup)
+			if (
+				_tile_actor
+				&& _tile_actor.has_method("get_stored_resources")
+				&& GameConstants.BUILDING_FLAGS.LOGISTICS not in _tile_actor.data.building_flags
+				&& _tile_actor not in _logistics_children
+			):
+				_logistics_children.append(_tile_actor)
+				_tile_actor.request_logistics_pickup.connect(_on_request_logistics_pickup)
 
 
 func _recalculate_resources() -> void:
