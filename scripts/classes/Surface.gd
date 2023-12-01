@@ -73,6 +73,8 @@ func _on_store_state_changed(state_key: String, substate) -> void:
 
 						add_child(_new_building)
 
+						_new_building.store_resources(_starting_building.starting_resources)
+
 					for _starting_resource in _starting_resources_container.get_children():
 						var _new_resource: ResourceActor = RESOURCE_SCENE.instantiate()
 

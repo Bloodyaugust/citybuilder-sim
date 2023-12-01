@@ -139,6 +139,9 @@ unique_name_in_owner = true
 [node name="StartingBuilding2" parent="StartingBuildings" instance=ExtResource("3_qxf0i")]
 position = Vector2(-115, -30)
 data = ExtResource("5_d6b3e")
+starting_resources = {
+"wood": 10
+}
 
 [node name="StartingResources" type="Node2D" parent="."]
 unique_name_in_owner = true
