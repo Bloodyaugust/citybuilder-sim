@@ -14,7 +14,7 @@ description = "Provides a small logistics area around it.
 Increases the maximum storage for its logistics network."
 resources_collected = Array[String]([])
 resource_collection_rate_per_tile = 0.0
-building_flags = Array[int]([0])
+building_flags = Array[int]([0, 1])
 building_cost = {}
 resources_generated = Array[String]([])
 resource_generation_rate = Array[String]([])

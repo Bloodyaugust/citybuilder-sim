@@ -27,19 +27,21 @@ func is_buildable() -> bool:
 
 	var _tile_network: Variant = _logistics_controller.get_tile_logistic_network_id(_origin_tile)
 
-	if !_tile_network:
-		return false
-
-	var _network_resources: Dictionary = _logistics_controller.get_logistic_network_resources_by_id(
-		_tile_network
-	)
-
-	for _resource_id in data.building_cost.keys():
-		if !_network_resources.has(_resource_id):
+	# TODO: Figure out where to spend resources from when building in a new logistics network
+	if !GameConstants.BUILDING_FLAGS.NO_LOGISTICS_REQUIREMENT in data.building_flags:
+		if !_tile_network:
 			return false
 
-		if data.building_cost[_resource_id] > _network_resources[_resource_id]:
-			return false
+		var _network_resources: Dictionary = (
+			_logistics_controller.get_logistic_network_resources_by_id(_tile_network)
+		)
+
+		for _resource_id in data.building_cost.keys():
+			if !_network_resources.has(_resource_id):
+				return false
+
+			if data.building_cost[_resource_id] > _network_resources[_resource_id]:
+				return false
 
 	return true
 
